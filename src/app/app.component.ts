@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { LoginPage } from '../pages/login/login';
 import { ListaPage } from '../pages/lista/lista';
 import { SobrePage } from '../pages/sobre/sobre';
 
@@ -12,7 +13,7 @@ import { SobrePage } from '../pages/sobre/sobre';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ListaPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
