@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { ListaPage } from '../pages/lista/lista';
 import { SobrePage } from '../pages/sobre/sobre';
+import { CadastroPage } from '../pages/cadastro/cadastro';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,6 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     LoginPage,
     ListaPage,
+    CadastroPage,
     SobrePage
   ],
   imports: [
@@ -26,6 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     LoginPage,
     ListaPage,
+    CadastroPage,
     SobrePage
   ],
   providers: [
