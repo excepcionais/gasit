@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detalhes do Posto</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>{{posto.nome}}</h3>
+  <h3>{{posto.preco}}</h3>
+  <p>Bandeira: {{posto.bandeira}}</p>
+  <p>Localização: {{posto.local}}</p>
+
+  <button ion-button full secondary (click)="editPreco()">Alterar preço</button>
+
+</ion-content>

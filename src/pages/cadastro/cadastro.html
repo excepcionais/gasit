@@ -1,17 +1,61 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Cadastro</ion-title>
+    <ion-title>Cadastro de Posto</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close">
+        </ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Cadastro de Posto</h3>
 
-  <p>
-    Nessa página deverão ter espaços relacionados aos dados que devem ser cadastrados em relação ao posto.
-  </p>
+  <ion-list>
+
+    <form [formGroup]="postoForm">
+
+      <ion-item>
+        <ion-label floating>Nome do posto</ion-label>
+        <ion-input type="text" [(ngModel)]="nome" formControlName="nome" [class.invalid]="!postoForm.controls.nome.valid && (postoForm.controls.nome.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!postoForm.controls.nome.valid  && (postoForm.controls.nome.dirty || submitAttempt)">
+        <p>Nome invalido</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Localização do posto</ion-label>
+        <ion-input type="text" [(ngModel)]="local" formControlName="local" [class.invalid]="!postoForm.controls.local.valid && (postoForm.controls.local.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!postoForm.controls.local.valid  && (postoForm.controls.local.dirty || submitAttempt)">
+        <p>Local invalido</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Bandeira do posto</ion-label>
+        <ion-input type="text" [(ngModel)]="bandeira" formControlName="bandeira" [class.invalid]="!postoForm.controls.bandeira.valid && (postoForm.controls.bandeira.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!postoForm.controls.bandeira.valid  && (postoForm.controls.bandeira.dirty || submitAttempt)">
+        <p>Bandeira invalida</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Preço da gasolina</ion-label>
+        <ion-input type="text" [(ngModel)]="preco" formControlName="preco" [class.invalid]="!postoForm.controls.preco.valid && (postoForm.controls.preco.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!postoForm.controls.preco.valid  && (postoForm.controls.preco.dirty || submitAttempt)">
+        <p>Preço invalido</p>
+      </ion-item>
+
+    </form>
+
+  </ion-list>
+
+  <button ion-button (click)="savePosto()">Adicionar posto</button>
 
 </ion-content>
