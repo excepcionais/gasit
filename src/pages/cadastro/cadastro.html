@@ -33,10 +33,17 @@
       <ion-item *ngIf="!postoForm.controls.local.valid  && (postoForm.controls.local.dirty || submitAttempt)">
         <p>Local invalido</p>
       </ion-item>
-
+      
       <ion-item>
-        <ion-label floating>Bandeira do posto</ion-label>
-        <ion-input type="text" [(ngModel)]="bandeira" formControlName="bandeira" [class.invalid]="!postoForm.controls.bandeira.valid && (postoForm.controls.bandeira.dirty || submitAttempt)"></ion-input>
+        <ion-label floating>Bandeira</ion-label>
+        <ion-select okText="Ok" cancelText="Cancelar" [(ngModel)]="bandeira" formControlName="bandeira" [class.invalid]="!postoForm.controls.bandeira.valid && (postoForm.controls.bandeira.dirty || submitAttempt)">
+          <ion-option value="Shell">Shell</ion-option>
+          <ion-option value="Ipiranga">Ipiranga</ion-option>
+          <ion-option value="BR">BR</ion-option>
+          <ion-option value="Ale">Ale</ion-option>
+          <ion-option value="JarJour">JarJour</ion-option>
+          <ion-option value="Outro">Outro</ion-option>
+        </ion-select>
       </ion-item>
 
       <ion-item *ngIf="!postoForm.controls.bandeira.valid  && (postoForm.controls.bandeira.dirty || submitAttempt)">

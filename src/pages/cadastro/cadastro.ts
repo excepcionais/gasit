@@ -27,8 +27,9 @@ export class CadastroPage {
     this.postoForm = formBuilder.group({
       nome: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
       local: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
-      bandeira: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
-      preco: ['', Validators.compose([Validators.maxLength(30), Validators.required])]
+  //    bandeira: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
+      bandeira: ['', Validators.compose([Validators.required])],
+      preco: ['', Validators.compose([Validators.minLength(5), Validators.maxLength(5), Validators.required])]
       //name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])] //PERMITIR ACENTUAÇÕES
     });
   }
