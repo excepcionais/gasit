@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   selector: 'page-cadastro',
   templateUrl: 'cadastro.html'
 })
-export class CadastroPage {
+export class CadastroPage { //Não utilizado, usar Validators como base
 
   postoForm: FormGroup;
 

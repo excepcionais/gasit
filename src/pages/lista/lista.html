@@ -16,9 +16,10 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-list>
 
-    <ion-item *ngFor="let posto of postos" (click)="showPosto($event, posto)">
+    <ion-item *ngFor="let posto of postos | async" (click)="showOptions(posto.id, posto.preco)">
       <h2>{{posto.nome}}</h2>
       <p>{{posto.bandeira}}</p>
       <p>{{posto.local}}</p>

@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
-import { LocalData } from '../../providers/data';
-
-import { CadastroPage } from '../cadastro/cadastro';
-import { DetalhesPage } from '../detalhes/detalhes';
+import { PostosService } from '../../providers/postosService';
+import { FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
   selector: 'page-lista',
@@ -12,73 +10,23 @@ import { DetalhesPage } from '../detalhes/detalhes';
 })
 export class ListaPage {
 
-  public postos = [];
+  postos: FirebaseListObservable<any>;
   private order: number = 0;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public modalCtrl: ModalController,
-    public toastCtrl: ToastController,
-    public localData: LocalData
-  ){
-    this.localData.getData('postos').then((postos) => {
-
-      if(postos){
-        this.postos = postos;
-      }
-
-    });
+  constructor( public navCtrl: NavController, public navParams: NavParams, private postosService: PostosService ){
+    this.postos = postosService.getAll();
   }
 
   reorderLista() {
-    let toast_preco = this.toastCtrl.create({
-      message: 'Ordenado por preço.',
-      duration: 2000,
-      position: 'bottom'
-    });
-
-    let toast_distancia = this.toastCtrl.create({
-      message: 'Ordenado por distância.',
-      duration: 2000,
-      position: 'bottom'
-    });
-
     this.order = 1 - this.order;
-
-    if(this.order == 0){
-      toast_preco.present(toast_preco);
-      //organizar por preço
-    }
-    else{
-      toast_distancia.present(toast_distancia);
-      //organizar por preço
-    }
+    this.postos = this.postosService.getPostos(this.order);
   }
 
-  addPosto() {
-    //this.navCtrl.push(CadastroPage);
-    let addModal = this.modalCtrl.create(CadastroPage);
-
-    addModal.onDidDismiss((posto) => {
-
-      if(posto){
-        this.savePosto(posto);
-      }
-
-    });
-
-    addModal.present();
+  addPosto(){
+    this.postosService.addPosto();
   }
 
-  savePosto(posto){
-    this.postos.push(posto);
-    this.localData.saveData('postos', this.postos);
-  }
-
-  showPosto(event, posto){
-    this.navCtrl.push(DetalhesPage, {
-      posto: posto
-    });
+  showOptions(postoId, postoPreco) {
+    this.postosService.showOptions(postoId, postoPreco);
   }
 }
