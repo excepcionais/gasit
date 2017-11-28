@@ -1,9 +1,25 @@
-<ion-content padding>
-  <h3>Login</h3>
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
+<ion-content padding>
   <p>
     Nessa página deve ter os botões referentes ao cadastro via Facebook ou Google+, e à opção de entrar como visitante.
   </p>
+
+  <button ion-button icon-left block (click)="login()">
+    <ion-icon name="logo-googleplus"></ion-icon>
+    LOGIN WITH GOOGLE
+  </button>
+
+  <button ion-button icon-left block (click)="fblogin()">
+    <ion-icon name="logo-facebook"></ion-icon>
+    LOGIN WITH FACEBOOK
+  </button>
 
   <button ion-button full secondary (click)="openPage()">Entrar como Visitante</button>
 

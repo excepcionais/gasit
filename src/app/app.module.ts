@@ -10,6 +10,20 @@ import { CadastroPage } from '../pages/cadastro/cadastro';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { Facebook } from '@ionic-native/facebook';
+import { AngularFireModule } from 'angularfire2';
+import firebase from 'firebase';
+
+export const firebaseConfig={
+  apiKey: "AIzaSyDbPFuCm8e4mR2A2MZ4Mp2SsvZZZ3ZztM8",
+    authDomain: "gasit-e93de.firebaseapp.com",
+    databaseURL: "https://gasit-e93de.firebaseio.com",
+    projectId: "gasit-e93de",
+    storageBucket: "gasit-e93de.appspot.com",
+    messagingSenderId: "354549517376"
+}
+firebase.initializeApp(firebaseConfig)
 
 @NgModule({
   declarations: [
@@ -22,6 +36,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +49,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GooglePlus,
+    Facebook
   ]
 })
 export class AppModule {}
