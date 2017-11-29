@@ -3,10 +3,10 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { LoginPage } from '../pages/login/login';
-import { ListaPage } from '../pages/lista/lista';
-import { UsuarioPage } from '../pages/usuario/usuario';
-import { SobrePage } from '../pages/sobre/sobre';
+import { UserLoginPage }     from '../pages/user-login/user-login';
+import { UserDetailPage }    from '../pages/user-detail/user-detail';
+import { StationListPage }   from '../pages/station-list/station-list';
+import { AboutUsPage }       from '../pages/about-us/about-us';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +14,7 @@ import { SobrePage } from '../pages/sobre/sobre';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = UserLoginPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -23,9 +23,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Lista de Postos', component: ListaPage },
-      { title: 'Configurar Perfil', component: UsuarioPage },
-      { title: 'Sobre', component: SobrePage }
+      { title: 'Lista de Postos', component: StationListPage },
+      { title: 'Conta do Usuário', component: UserDetailPage },
+      { title: 'EXCEPCIONAIS', component: AboutUsPage }
     ];
 
   }

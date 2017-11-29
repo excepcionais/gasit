@@ -4,7 +4,7 @@ import { ToastController, AlertController, ActionSheetController } from 'ionic-a
 import * as firebase from 'firebase';
 
 @Injectable()
-export class PostosService {
+export class StationService {
 
   items: FirebaseListObservable<any[]>;
 
@@ -14,7 +14,7 @@ export class PostosService {
     public actionSheetCtrl: ActionSheetController,
     private afDb: AngularFireDatabase
   ){
-    this.items = afDb.list('/postos');
+    this.items = afDb.list('/stations');
   }
 
   public getAll() {
@@ -25,28 +25,28 @@ export class PostosService {
     return this.items;
   }
 
-  public getPostos(order: number) { //Ordenar por distancia //Filtrar por distancia
-    let toast_preco = this.toastCtrl.create({
+  public getStations(order: number) { //Ordenar por distancia //Filtrar por distancia
+    let toast_price = this.toastCtrl.create({
       message: 'Ordenado por preço.',
       duration: 1500,
       position: 'bottom'
     });
 
-    let toast_distancia = this.toastCtrl.create({
+    let toast_distance = this.toastCtrl.create({
       message: 'Ordenado por distância.',
       duration: 1500,
       position: 'bottom'
     });
 
     if(order){
-      toast_distancia.present(toast_distancia);
-      this.items = this.afDb.list('/postos', {query: {
+      toast_distance.present(toast_distance);
+      this.items = this.afDb.list('/stations', {query: {
         orderByChild: 'nome'           //distancia
       }});
     }
     else{
-      toast_preco.present(toast_preco);
-      this.items = this.afDb.list('/postos', {query: {
+      toast_price.present(toast_price);
+      this.items = this.afDb.list('/stations', {query: {
         orderByChild: 'preco'
       }});
     }
@@ -54,17 +54,17 @@ export class PostosService {
     return this.items;
   }
 
-  public addPosto() {  //Editar AlertController pra validar informações //ultima edição //id do rapaz //localização //ID do usuario //Data da atualização
+  public addStation() {  //Editar AlertController pra validar informações //ultima edição //id do rapaz //localização //ID do usuario //Data da atualização
     let prompt = this.alertCtrl.create({
       title: 'Adicionar posto',
       message: "Adicione um posto e suas informações",
       inputs: [
         {
-          name: 'nome',
+          name: 'name',
           placeholder: 'Nome (Posto JarJour, Posto do Marcelo)'
         },
         {
-          name: 'bandeira',
+          name: 'flag',
           placeholder: 'Bandeira (Shell, Ale, BR, JarJour)'
         },
         {
@@ -80,7 +80,7 @@ export class PostosService {
           placeholder: 'Coordenada Y (-48.054211)'
         },
         {
-          name: 'preco',
+          name: 'price',
           placeholder: 'Preço (4,000)'
         },
       ],
@@ -94,18 +94,18 @@ export class PostosService {
         {
           text: 'Adicionar',
           handler: data => {
-            const newPostoRef = this.items.push({});
+            const newStationRef = this.items.push({});
 
-            newPostoRef.set({
-              id: newPostoRef.key,
-              nome: data.nome,
-              bandeira: data.bandeira,
+            newStationRef.set({
+              id: newStationRef.key,
+              name: data.name,
+              flag: data.flag,
               local: data.local,
               coord_x: data.coord_x,
               coord_y: data.coord_y,
-              preco: data.preco,
-              ultima_data: this.getActualDate(),
-              ultima_user: this.getActualUser()
+              price: data.price,
+              last_date: this.getActualDate(),
+              lest_user: this.getActualUser()
             });
           }
         }
@@ -115,7 +115,7 @@ export class PostosService {
     prompt.present();
   }
 
-  public showOptions(postoId, postoPreco) { //Ver no Maps //Alterar Preço
+  public showOptions(stationId, price) { //Ver no Maps //Alterar Preço
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Selecione uma ação:',
       buttons: [
@@ -123,12 +123,12 @@ export class PostosService {
           text: 'Deletar posto',
           role: 'destructive',
           handler: () => {
-            this.removePosto(postoId);
+            this.removeStation(stationId);
           }
         },{
           text: 'Atualizar preço',
           handler: () => {
-            this.updatePreco(postoId, postoPreco);
+            this.updatePrice(stationId, price);
           }
         },{
           text: 'Cancelar',
@@ -142,15 +142,15 @@ export class PostosService {
     actionSheet.present();
   }
 
-  public updatePreco(postoId, postoPreco){//ID do usuario //Data da atualização //Preço validation
+  public updatePrice(stationId, price){//ID do usuario //Data da atualização //Preço validation
     let prompt = this.alertCtrl.create({
       title: 'Alterar preço',
       message: "Aterar preço de gasolina no posto selecionado",
       inputs: [
         {
-          name: 'preco',
+          name: 'price',
           placeholder: 'Preço',
-          value: postoPreco
+          value: price
         },
       ],
       buttons: [
@@ -163,10 +163,10 @@ export class PostosService {
         {
           text: 'Salvar',
           handler: data => {
-            this.items.update(postoId, {
-              preco: data.preco,
-              ultima_data: this.getActualDate(),
-              ultima_user: this.getActualUser()
+            this.items.update(stationId, {
+              price: data.price,
+              last_date: this.getActualDate(),
+              last_user: this.getActualUser()
             });
           }
         }
@@ -175,8 +175,8 @@ export class PostosService {
     prompt.present();
   }
 
-  public removePosto(songId: string) {
-    this.items.remove(songId);
+  public removeStation(stationId: string) {
+    this.items.remove(stationId);
   }
 
   getActualDate(){ //retornar string "00:00 - 11 Janeiro 2017";

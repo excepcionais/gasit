@@ -5,10 +5,10 @@
     </button>
     <ion-title>GasIt</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="addPosto()">
+      <button ion-button icon-only (click)="addStation()">
         <ion-icon name="add-circle"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="reorderLista()">
+      <button ion-button icon-only (click)="orderList()">
         <ion-icon name="funnel"></ion-icon>
       </button>
     </ion-buttons>
@@ -19,11 +19,11 @@
 
   <ion-list>
 
-    <ion-item *ngFor="let posto of postos | async" (click)="showOptions(posto.id, posto.preco)">
-      <h2>{{posto.nome}}</h2>
-      <p>{{posto.bandeira}}</p>
-      <p>{{posto.local}}</p>
-      <h3 item-end>{{posto.preco}}</h3>
+    <ion-item *ngFor="let station of stations | async" (click)="showOptions(station.id, station.price)">
+      <h2>{{station.name}}</h2>
+      <p>{{station.flag}}</p>
+      <p>{{station.local}}</p>
+      <h3 item-end>{{station.price}}</h3>
     </ion-item>
 
   </ion-list>

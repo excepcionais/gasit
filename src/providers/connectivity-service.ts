@@ -2,29 +2,27 @@ import { Injectable } from '@angular/core';
 import { Network } from '@ionic-native/network';
 import { Platform } from 'ionic-angular';
 
-declare var Connection;
-
 @Injectable()
-export class ConectividadeService {
+export class ConnectivityService {
 
-  conectado: boolean;
+  connected: boolean;
 
   constructor(
     public platform: Platform,
     public network: Network
   ){
     platform.ready().then(() => {
-      this.checkConexao();
+      this.checkConnection();
       this.network.onDisconnect().subscribe(() => this.isOffline());
       this.network.onConnect().subscribe(() => this.isOnline());
     });
   }
 
   getStatus(){
-    return this.conectado;
+    return this.connected;
   }
 
-  checkConexao(){
+  checkConnection(){
     if (this.network.type === 'none') {
       this.isOffline();
     } else {
@@ -33,12 +31,12 @@ export class ConectividadeService {
   }
 
   isOffline(){
-    this.conectado = false;
+    this.connected = false;
     console.log("offline");
   }
 
   isOnline(){
-    this.conectado = true;
+    this.connected = true;
     console.log("online");
   }
 }

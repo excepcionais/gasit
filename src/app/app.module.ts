@@ -7,18 +7,19 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MyApp } from './app.component';
 
-import { LoginPage } from '../pages/login/login';
-import { ListaPage } from '../pages/lista/lista';
-import { SobrePage } from '../pages/sobre/sobre';
-import { CadastroPage } from '../pages/cadastro/cadastro';
-import { UsuarioPage } from '../pages/usuario/usuario';
+import { UserLoginPage }     from '../pages/user-login/user-login';
+import { UserDetailPage }    from '../pages/user-detail/user-detail';
+import { StationListPage }   from '../pages/station-list/station-list';
+import { StationDetailPage } from '../pages/station-detail/station-detail';
+import { PriceUpdatePage }   from '../pages/price-update/price-update';
+import { AboutUsPage }       from '../pages/about-us/about-us';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-import { PostosService } from '../providers/postos-service';
-import { ConectividadeService } from '../providers/conectividade-service';
+import { StationService }      from '../providers/station-service';
+import { ConnectivityService } from '../providers/connectivity-service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDbPFuCm8e4mR2A2MZ4Mp2SsvZZZ3ZztM8",
@@ -32,11 +33,12 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage,
-    ListaPage,
-    CadastroPage,
-    SobrePage,
-    UsuarioPage
+    UserLoginPage,
+    UserDetailPage,
+    StationListPage,
+    StationDetailPage,
+    PriceUpdatePage,
+    AboutUsPage
   ],
   imports: [
     BrowserModule,
@@ -48,18 +50,19 @@ const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LoginPage,
-    ListaPage,
-    CadastroPage,
-    SobrePage,
-    UsuarioPage
+    UserLoginPage,
+    UserDetailPage,
+    StationListPage,
+    StationDetailPage,
+    PriceUpdatePage,
+    AboutUsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Network,
-    PostosService,
-    ConectividadeService,
+    StationService,
+    ConnectivityService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
