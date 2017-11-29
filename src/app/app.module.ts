@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Geolocation } from '@ionic-native/geolocation'
 
 import { MyApp } from './app.component';
 
@@ -20,6 +21,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { StationService }      from '../providers/station-service';
 import { ConnectivityService } from '../providers/connectivity-service';
+import { GeographicService } from '../providers/geographic-service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDbPFuCm8e4mR2A2MZ4Mp2SsvZZZ3ZztM8",
@@ -61,8 +63,10 @@ const firebaseConfig = {
     StatusBar,
     SplashScreen,
     Network,
+    Geolocation,
     StationService,
     ConnectivityService,
+    GeographicService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

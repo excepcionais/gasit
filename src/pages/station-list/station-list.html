@@ -5,12 +5,15 @@
     </button>
     <ion-title>GasIt</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="addStation()">
-        <ion-icon name="add-circle"></ion-icon>
-      </button>
+
       <button ion-button icon-only (click)="orderList()">
         <ion-icon name="funnel"></ion-icon>
       </button>
+<!--
+      <button ion-button icon-only (click)="addStation()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+-->
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -19,12 +22,11 @@
 
   <ion-list>
 
-    <!--<ion-item *ngFor="let station of stations | async" (click)="openStation(station)">-->
     <ion-item *ngFor="let station of stations | async" (click)="openStation(station)">
       <h2>{{station.name}}</h2>
       <p>{{station.flag}}</p>
       <p>{{station.local}}</p>
-      <p item-end>1.0km</p>
+      <!-- <p item-end>{{station.distance}}km</p> -->
       <h3 item-end>{{station.price}}</h3>
     </ion-item>
 

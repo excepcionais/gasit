@@ -40,7 +40,7 @@ export class StationService {
     if(order){
       toast_distance.present(toast_distance);
       this.items = this.afDb.list('/stations', {query: {
-        orderByChild: 'name'           //distancia
+        orderByChild: 'local'           //distancia
       }});
     }
     else{
