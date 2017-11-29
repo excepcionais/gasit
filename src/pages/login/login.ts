@@ -3,18 +3,27 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { ListaPage } from '../lista/lista';
 
+import { ConectividadeService } from '../../providers/conectividade-service';
+
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
+  constructor(
+    public navCtrl: NavController,
+    private conecServ: ConectividadeService
+  ){
+
   }
 
   openPage() {
-    this.navCtrl.setRoot(ListaPage);
+    if(this.conecServ.getStatus()) {
+      this.navCtrl.setRoot(ListaPage);
+    } else {
+      alert("Sem conexão");
+    }
   }
 
 }

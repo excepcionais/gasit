@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { Network } from '@ionic-native/network';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -16,7 +17,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-import { PostosService } from '../providers/postosService'
+import { PostosService } from '../providers/postos-service';
+import { ConectividadeService } from '../providers/conectividade-service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDbPFuCm8e4mR2A2MZ4Mp2SsvZZZ3ZztM8",
@@ -55,7 +57,9 @@ const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    Network,
     PostosService,
+    ConectividadeService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

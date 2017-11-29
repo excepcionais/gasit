@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { ToastController, AlertController, ActionSheetController } from 'ionic-angular';
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class PostosService {
