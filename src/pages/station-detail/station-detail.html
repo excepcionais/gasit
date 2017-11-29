@@ -8,8 +8,15 @@
 </ion-header>
 
 <ion-content padding>
-  <p>
-    Nessa página deverão ter detalhes do posto.
-  </p>
+
+  <h3>{{station.name}}</h3>
+  <h3>{{station.price}}</h3>
+  <p>Bandeira: {{station.flag}}</p>
+  <p>Localização: {{station.local}}</p>
+
+  <p>Ultima atualização: {{station.last_date}} por {{station.last_user}}</p>
+
+  <a ion-button full href="https://www.google.com/maps/?q={{station.latitude}},{{station.longitude}}">Mostrar no Google Maps</a>
+  <button ion-button full (click)="updatePrice()">Alterar preço</button>
 
 </ion-content>

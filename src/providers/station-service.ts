@@ -17,12 +17,11 @@ export class StationService {
     this.items = afDb.list('/stations');
   }
 
-  public getAll() {
-    return this.items;
-  }
+  public getStation(stationId){ //TEST
+    let item: any;
+    this.items.subscribe((items) => item = items.find(p => p.id == stationId));
 
-  public getItem(){
-    return this.items;
+    return item;
   }
 
   public getStations(order: number) { //Ordenar por distancia //Filtrar por distancia
@@ -41,20 +40,20 @@ export class StationService {
     if(order){
       toast_distance.present(toast_distance);
       this.items = this.afDb.list('/stations', {query: {
-        orderByChild: 'nome'           //distancia
+        orderByChild: 'name'           //distancia
       }});
     }
     else{
       toast_price.present(toast_price);
       this.items = this.afDb.list('/stations', {query: {
-        orderByChild: 'preco'
+        orderByChild: 'price'
       }});
     }
 
     return this.items;
   }
 
-  public addStation() {  //Editar AlertController pra validar informações //ultima edição //id do rapaz //localização //ID do usuario //Data da atualização
+  public addStation() {
     let prompt = this.alertCtrl.create({
       title: 'Adicionar posto',
       message: "Adicione um posto e suas informações",
@@ -72,11 +71,11 @@ export class StationService {
           placeholder: 'Descrição Local (CSB 06, Taguatinga Sul, DF)'
         },
         {
-          name: 'coord_x',
+          name: 'latitude',
           placeholder: 'Coordenada X (-15.838991)'
         },
         {
-          name: 'coord_y',
+          name: 'longitude',
           placeholder: 'Coordenada Y (-48.054211)'
         },
         {
@@ -101,8 +100,8 @@ export class StationService {
               name: data.name,
               flag: data.flag,
               local: data.local,
-              coord_x: data.coord_x,
-              coord_y: data.coord_y,
+              latitude: data.latitude,
+              longitude: data.longitude,
               price: data.price,
               last_date: this.getActualDate(),
               lest_user: this.getActualUser()
@@ -128,7 +127,7 @@ export class StationService {
         },{
           text: 'Atualizar preço',
           handler: () => {
-            this.updatePrice(stationId, price);
+            this.updatePriceAlert(stationId, price);
           }
         },{
           text: 'Cancelar',
@@ -142,7 +141,7 @@ export class StationService {
     actionSheet.present();
   }
 
-  public updatePrice(stationId, price){//ID do usuario //Data da atualização //Preço validation
+  public updatePriceAlert(stationId, price){//ID do usuario //Data da atualização //Preço validation
     let prompt = this.alertCtrl.create({
       title: 'Alterar preço',
       message: "Aterar preço de gasolina no posto selecionado",
@@ -173,6 +172,14 @@ export class StationService {
       ]
     });
     prompt.present();
+  }
+
+  public updatePrice(stationId, price){
+    this.items.update(stationId, {
+      price: price,
+      last_date: this.getActualDate(),
+      last_user: this.getActualUser()
+    });
   }
 
   public removeStation(stationId: string) {

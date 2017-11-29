@@ -4,6 +4,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { StationService }         from '../../providers/station-service';
 import { FirebaseListObservable } from 'angularfire2/database';
 
+import { StationDetailPage } from '../station-detail/station-detail';
+
 @Component({
   selector: 'station-list',
   templateUrl: 'station-list.html'
@@ -18,7 +20,7 @@ export class StationListPage {
     public navParams: NavParams,
     private stationServ: StationService
   ){
-    this.stations = stationServ.getAll();
+    this.stations = this.stationServ.getStations(this.order);
   }
 
   orderList() {
@@ -30,7 +32,11 @@ export class StationListPage {
     this.stationServ.addStation();
   }
 
-  showOptions(stationId, price) {
-    this.stationServ.showOptions(stationId, price);
+  openStation(station){
+    this.navCtrl.push(StationDetailPage, {
+      station: station
+    });
   }
+
+
 }

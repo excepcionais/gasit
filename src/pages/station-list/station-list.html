@@ -19,10 +19,12 @@
 
   <ion-list>
 
-    <ion-item *ngFor="let station of stations | async" (click)="showOptions(station.id, station.price)">
+    <!--<ion-item *ngFor="let station of stations | async" (click)="openStation(station)">-->
+    <ion-item *ngFor="let station of stations | async" (click)="openStation(station)">
       <h2>{{station.name}}</h2>
       <p>{{station.flag}}</p>
       <p>{{station.local}}</p>
+      <p item-end>1.0km</p>
       <h3 item-end>{{station.price}}</h3>
     </ion-item>
 
