@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Detalhes do Posto</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h3>{{station.name}}</h3>
+  <h3>{{station.price}}</h3>
+  <p>{{station.flag}}</p>
+  <p>{{station.local}}</p>
+
+  <p>Ultima atualização: {{station.last_date}} por {{station.last_user}}</p>
+
+  <a ion-button full href="https://www.google.com/maps/?q={{station.latitude}},{{station.longitude}}">Mostrar no Google Maps</a>
+  <button ion-button full (click)="updatePrice()">Alterar preço</button>
+
+</ion-content>

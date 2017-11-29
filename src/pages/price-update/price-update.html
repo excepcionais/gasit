@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Alterar preço</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="closeUpdate()">
+        <ion-icon name="close">
+        </ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+
+    <form [formGroup]="stationForm">
+
+      <ion-item>
+        <ion-label floating>Preço da gasolina</ion-label>
+        <ion-input type="number" [(ngModel)]="price" formControlName="price" [class.invalid]="!stationForm.controls.price.valid && (stationForm.controls.price.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!stationForm.controls.price.valid  && (stationForm.controls.price.dirty || submitAttempt)">
+        <p>Preço invalido</p>
+      </ion-item>
+
+    </form>
+
+  </ion-list>
+
+<button ion-button (click)="updatePrice()">Adicionar posto</button>
+
+</ion-content>
