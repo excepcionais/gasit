@@ -28,10 +28,7 @@ export class StationListPage {
   ){
     this.stations = this.stationServ.getStations(this.order);
     //this.length = this.getListLenght(),
-    setInterval(() => {
-      //this.getAllDistances();
-      //this.getDistance1();
-    }, 3000);
+
   }
 
   orderList() {

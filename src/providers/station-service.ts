@@ -32,7 +32,7 @@ export class StationService {
     });
 
     let toast_distance = this.toastCtrl.create({
-      message: 'Ordenado por distância.',
+      message: 'Ordenado por localização.',
       duration: 1500,
       position: 'bottom'
     });
